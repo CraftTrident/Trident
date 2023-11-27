@@ -1,7 +1,5 @@
 name: Upstream
-on:
-  schedule:
-    - cron: "*/15 * * * *"
+on: [ push, pull_request ]
 jobs:
   upstream:
     runs-on: ubuntu-latest
@@ -21,5 +19,5 @@ jobs:
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.TOKEN }}
           branch: ${{ github.ref }}

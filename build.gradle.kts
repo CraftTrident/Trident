@@ -63,7 +63,7 @@ dependencies {
 }
 
 paperweight {
-    serverProject.set(project(":tentacles-server"))
+    serverProject.set(project(":trident-server"))
 
     remapRepo.set(paperMavenPublicUrl)
     decompileRepo.set(paperMavenPublicUrl)
@@ -76,16 +76,16 @@ paperweight {
             baseName("Purpur")
 
             apiPatchDir.set(layout.projectDirectory.dir("patches/api"))
-            apiOutputDir.set(layout.projectDirectory.dir("Tentacles-API"))
+            apiOutputDir.set(layout.projectDirectory.dir("Trident-API"))
 
             serverPatchDir.set(layout.projectDirectory.dir("patches/server"))
-            serverOutputDir.set(layout.projectDirectory.dir("Tentacles-Server"))
+            serverOutputDir.set(layout.projectDirectory.dir("Trident-Server"))
         }
     }
 }
 
 tasks.generateDevelopmentBundle {
-    apiCoordinates.set("org.purpurmc.tentacles:tentacles-api")
+    apiCoordinates.set("org.crafttrident.trident:trident-api")
     mojangApiCoordinates.set("io.papermc.paper:paper-mojangapi")
     libraryRepositories.set(
         listOf(
@@ -100,7 +100,7 @@ allprojects {
     publishing {
         repositories {
             maven("https://repo.purpurmc.org/snapshots") {
-                name = "tentacles"
+                name = "trident"
                 credentials(PasswordCredentials::class)
             }
         }
@@ -121,7 +121,8 @@ tasks.register("printMinecraftVersion") {
     }
 }
 
-tasks.register("printTentaclesVersion") {
+tasks.register("printTrident
+Version") {
     doLast {
         println(project.version)
     }
