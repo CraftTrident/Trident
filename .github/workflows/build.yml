@@ -38,7 +38,7 @@ jobs:
         with:
           name: Build ${{ github.run_number }}
           tag_name: ${{ github.run_number }}
-          body: "Need Help? Join our Discord and our #support channel for help! NOTE AS OF RIGHT NOW DEEPSLATE IS BETA THE DEEPSLATE TEAM DOES NOT RECCOMAND YOU USING DEEPSLATE ON A LARGE SERVER!"
+          body: "Need Help? Join our Discord and our #support channel for help! NOTE AS OF RIGHT NOW TRIDENT IS BETA THE TRIDENT TEAM DOES NOT RECCOMAND YOU USING TRIDENT ON A LARGE SERVER!"
           token: ${{ secrets.TOKEN }}
           files: build/libs/*.jar
       - name: Github Releases To Discord
