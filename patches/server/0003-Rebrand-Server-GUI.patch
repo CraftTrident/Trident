@@ -5,7 +5,7 @@ Subject: [PATCH] Rebrand Server GUI
 
 
 diff --git a/src/main/java/net/minecraft/server/gui/MinecraftServerGui.java b/src/main/java/net/minecraft/server/gui/MinecraftServerGui.java
-index 56cf3d5b8e365ce6b1ec88464d9079d774206755..a4cc25dd920d714b971fe4384416e3ed1c5f909f 100644
+index be7b3fe2dc84493dcde9e185717b0b7c7c2e9822..52ea2c2cacaa692064e1fb7ae6d2bdc975c1b7ed 100644
 --- a/src/main/java/net/minecraft/server/gui/MinecraftServerGui.java
 +++ b/src/main/java/net/minecraft/server/gui/MinecraftServerGui.java
 @@ -56,7 +56,7 @@ public class MinecraftServerGui extends JComponent {
