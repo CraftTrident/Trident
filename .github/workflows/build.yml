@@ -22,7 +22,7 @@ jobs:
       - name: Apply Patches
         run: ./gradlew applyPatches --no-daemon --stacktrace
       - name: Build
-        run: ./gradlew build --no daemon --stacktrace
+        run: ./gradlew build --no-daemon --stacktrace
       - name: Build Reobf Jar
         run: ./gradlew createReobfPaperclipJar --no-daemon --stacktrace
       - name: Rebuild on Failure
