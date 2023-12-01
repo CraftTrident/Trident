@@ -15,7 +15,7 @@ jobs:
         run: git config --global user.email "action@github.com" && git config --global user.name "Github Action"
       - name: Update upstream
         run: |
-          ./scripts/updateUpstream.sh
+          ./scripts/updateUpstream.sh --stacktrace --no-daemon
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
