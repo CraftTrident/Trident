@@ -121,8 +121,7 @@ tasks.register("printMinecraftVersion") {
     }
 }
 
-tasks.register("printTrident
-Version") {
+tasks.register("printTridentVersion") {
     doLast {
         println(project.version)
     }
