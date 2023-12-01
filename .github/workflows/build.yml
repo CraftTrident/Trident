@@ -23,15 +23,12 @@ jobs:
         run: ./gradlew applyPatches --no-daemon --stacktrace
       - name: Build
         run: ./gradlew build --no-daemon --stacktrace
-      - name: Build Reobf Jar
-        run: ./gradlew createReobfPaperclipJar --no-daemon --stacktrace
       - name: Rebuild on Failure
         if: ${{ failure() }}
         run: |
           ./gradlew clean cleanCache
           ./gradlew applyPatches --no-daemon --stacktrace
           ./gradlew build --no-daemon --stacktrace
-          ./gradlew ./gradlew createReobfPaperclipJar --no-daemon --stacktrace
           ./gradlew generateDevelopmentBundle --no-daemon --stacktrace
       - name: Set Commit Hash
         id: set_commit_hash
