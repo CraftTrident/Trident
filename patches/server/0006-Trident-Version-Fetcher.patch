@@ -1,58 +1,43 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
-From: Pancakse <pancakseyt@gmail.com>
-Date: Fri, 1 Dec 2023 16:32:32 -0700
-Subject: [PATCH] Trident: Version Fetcher
+From: Pancakse <pancakseyt@gmail.com.com>
+Date: Thu, 9 Nov 2023 09:34:56 +0300
+Subject: [PATCH] Trident Version Fetcher
 
 
-diff --git a/src/main/java/com/destroystokyo/paper/PaperVersionFetcher.java b/src/main/java/com/destroystokyo/paper/PaperVersionFetcher.java
-index 462a6eed350fd660ddaf25d567bb6e97b77d0b2b..4a5ceda9cfc1c87b82366d91c882af3064ccf1bb 100644
---- a/src/main/java/com/destroystokyo/paper/PaperVersionFetcher.java
-+++ b/src/main/java/com/destroystokyo/paper/PaperVersionFetcher.java
-@@ -20,7 +20,7 @@ import java.util.stream.StreamSupport;
- public class PaperVersionFetcher implements VersionFetcher {
-     private static final java.util.regex.Pattern VER_PATTERN = java.util.regex.Pattern.compile("^([0-9\\.]*)\\-.*R"); // R is an anchor, will always give '-R' at end
-     // Purpur start
--    private static final String DOWNLOAD_PAGE = "https://purpurmc.org/downloads";
-+    private static final String DOWNLOAD_PAGE = "https://github.com/CraftTrident/Trident/actions"; // Trident
-     private static int distance = -2; public int distance() { return distance; }
-     // Purpur end
-     private static @Nullable String mcVer;
-@@ -33,8 +33,8 @@ public class PaperVersionFetcher implements VersionFetcher {
-     @Nonnull
+diff --git a/src/main/java/org/bukkit/craftbukkit/util/CraftMagicNumbers.java b/src/main/java/org/bukkit/craftbukkit/util/CraftMagicNumbers.java
+index 1e81801e5701b08feedd840c1e1663ae26507c16..775273010f531a698bbc0cfef0a393f63b1912c6 100644
+--- a/src/main/java/org/bukkit/craftbukkit/util/CraftMagicNumbers.java
++++ b/src/main/java/org/bukkit/craftbukkit/util/CraftMagicNumbers.java
+@@ -485,7 +485,7 @@ public final class CraftMagicNumbers implements UnsafeValues {
+ 
      @Override
-     public Component getVersionMessage(@Nonnull String serverVersion) {
--        String[] parts = serverVersion.substring("git-Purpur-".length()).split("[-\\s]"); // Purpur
--        final Component updateMessage = getUpdateStatusMessage("PurpurMC/Purpur", "ver/" + getMinecraftVersion(), parts[0]); // Purpur
-+        String[] parts = serverVersion.substring("git-CraftTrident-".length()).split("[-\\s]"); // Purpur // Trident
-+        final Component updateMessage = getUpdateStatusMessage("CraftTrident/Trident", "ver/" + getMinecraftVersion(), parts[0]); // Purpur // Trident
-         final Component history = getHistory();
+     public com.destroystokyo.paper.util.VersionFetcher getVersionFetcher() {
+-        return new com.destroystokyo.paper.PaperVersionFetcher(); // Pufferfish // Purpur
++        return new org.crafttrident.trident.TridentVersionFetcher(); // Pufferfish // Purpur // Trident
+     }
  
-         return history != null ? Component.join(net.kyori.adventure.text.JoinConfiguration.separator(Component.newline()), history, updateMessage) : updateMessage; // Purpur
-@@ -47,7 +47,7 @@ public class PaperVersionFetcher implements VersionFetcher {
-                 String result = matcher.group();
-                 mcVer = result.substring(0, result.length() - 2); // strip 'R' anchor and trailing '-'
-             } else {
--                org.bukkit.Bukkit.getLogger().warning("Unable to match version to pattern! Report to Purpur!"); // Purpur
-+                org.bukkit.Bukkit.getLogger().warning("Unable to match version to pattern! Report to Trident!"); // Purpur // Trident
-                 org.bukkit.Bukkit.getLogger().warning("Pattern: " + VER_PATTERN.toString());
-                 org.bukkit.Bukkit.getLogger().warning("Version: " + org.bukkit.Bukkit.getBukkitVersion());
-             }
-@@ -58,6 +58,7 @@ public class PaperVersionFetcher implements VersionFetcher {
- 
-     private static Component getUpdateStatusMessage(@Nonnull String repo, @Nonnull String branch, @Nonnull String versionInfo) {
-         //int distance; // Purpur - use field
-+        /* // Trident start - disable jenkins/api checking
-         try {
-             int jenkinsBuild = Integer.parseInt(versionInfo);
-             distance = fetchDistanceFromSiteApi(jenkinsBuild, getMinecraftVersion());
-@@ -65,6 +66,10 @@ public class PaperVersionFetcher implements VersionFetcher {
-             versionInfo = versionInfo.replace("\"", "");
-             distance = fetchDistanceFromGitHub(repo, branch, versionInfo);
-         }
-+        */
-+        versionInfo = versionInfo.replace("\"", "");
-+        distance = fetchDistanceFromGitHub(repo, branch, versionInfo);
-+        // Trident end
- 
-         switch (distance) {
-             case -1:
+     @Override
+diff --git a/src/main/java/org/crafttrident/trident/TridentVersionFetcher.java b/src/main/java/org/crafttrident/trident/TridentVersionFetcher.java
+new file mode 100644
+index 0000000000000000000000000000000000000000..087220fb36dd83424072c548177826238ceaeecd
+--- /dev/null
++++ b/src/main/java/org/crafttrident/trident/TridentVersionFetcher.java
+@@ -0,0 +1,18 @@
++package org.crafttrident.trident;
++
++import com.destroystokyo.paper.util.VersionFetcher;
++import net.kyori.adventure.text.Component;
++import net.kyori.adventure.text.format.NamedTextColor;
++import org.jetbrains.annotations.NotNull;
++
++public class TridentVersionFetcher implements VersionFetcher {
++    @Override
++    public long getCacheTime() {
++        return Long.MAX_VALUE;
++    }
++
++    @Override
++    public @NotNull Component getVersionMessage(@NotNull String serverVersion) {
++        return Component.text("CraftTrident: ").append(Component.text(serverVersion, NamedTextColor.GREEN));
++    }
++}
