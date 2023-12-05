@@ -14,7 +14,7 @@ index f8d1631b274751a60d429f847ca7689e17adf1a2..12631a7174fdb9b8792caf0fb76cbbae
  
              dedicatedserversettings.forceSave();
 -            Path path2 = Paths.get("eula.txt");
-+            Path path2 = Paths.get(dedicatedserversettings.getProperties().useGlobalEula ? dedicatedserversettings.getProperties().globalEulaPath : "eula.txt"); // Graphite - Global EULA
++            Path path2 = Paths.get(dedicatedserversettings.getProperties().useGlobalEula ? dedicatedserversettings.getProperties().globalEulaPath : "eula.txt"); // Trident - Global EULA
              Eula eula = new Eula(path2);
              // Paper start - load config files for access below if needed
              org.bukkit.configuration.file.YamlConfiguration bukkitConfiguration = io.papermc.paper.configuration.PaperConfigurations.loadLegacyConfigFile((File) optionset.valueOf("bukkit-settings"));
@@ -23,15 +23,15 @@ index f8d1631b274751a60d429f847ca7689e17adf1a2..12631a7174fdb9b8792caf0fb76cbbae
                  return;
              }
 -
-+            // Graphite start - Global EULA
++            // Trident start - Global EULA
 +            if (dedicatedserversettings.getProperties().useGlobalEula) {
 +                Main.LOGGER.warn("");
-+                Main.LOGGER.warn("You are using Graphite's global EULA feature.");
++                Main.LOGGER.warn("You are using Trident's global EULA feature.");
 +                Main.LOGGER.warn("By using this setting you are indicating your agreement to Mojang's EULA (https://account.mojang.com/documents/minecraft_eula).");
 +                Main.LOGGER.warn("If you do not agree to the above EULA please stop your server and disable the feature immediately.");
 +                Main.LOGGER.warn("");
 +            }
-+            // Graphite end - Global EULA
++            // Trident end - Global EULA
              // Paper start - Warn on headless
              String awtException = io.papermc.paper.util.ServerEnvironment.awtDependencyCheck();
              if (awtException != null) {
@@ -43,10 +43,10 @@ index 1ea3012995c738c67b31e997c138f824f9e69ba1..a8dbacde957228dda9d0faa09a67a3f6
      public final WorldOptions worldOptions;
  
      public final String rconIp; // Paper - Add rcon ip
-+    // Graphite start - Global EULA
++    // Trident start - Global EULA
 +    public final boolean useGlobalEula;
 +    public final String globalEulaPath;
-+    // Graphite end - Global EULA
++    // Trident end - Global EULA
  
      // CraftBukkit start
      public DedicatedServerProperties(Properties properties, OptionSet optionset) {
@@ -54,10 +54,10 @@ index 1ea3012995c738c67b31e997c138f824f9e69ba1..a8dbacde957228dda9d0faa09a67a3f6
          final String rconIp = this.getStringRaw("rcon.ip");
          this.rconIp = rconIp == null ? this.serverIp : rconIp;
          // Paper end
-+        // Graphite start - Global EULA
++        // Trident start - Global EULA
 +        this.useGlobalEula = get("use-global-eula", false);
 +        this.globalEulaPath = get("global-eula-path", System.getProperty("user.home") + java.io.File.separator + "GlobalEula.txt");
-+        // Graphite end - Global EULA
++        // Trident end - Global EULA
      }
  
      // CraftBukkit start
