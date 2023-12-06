@@ -4,7 +4,7 @@ Date: Thu, 9 Nov 2023 09:34:56 +0300
 Subject: [PATCH] Trident Version Fetcher
 
 
-diff --git a/src/main/java/com/destroystokyo/paper/PaperVersionFetcher.java b/src/main/java/com/destroystokyo/paper/PaperVersionFetcher.java
+diff --git a/src/main/java/com/destroystokyo/paper/PaperVersionFetcher b/src/main/java/com/destroystokyo/paper/PaperVersionFetcher
 index 462a6eed350fd660ddaf25d567bb6e97b77d0b2b..4a5ceda9cfc1c87b82366d91c882af3064ccf1bb 100644
 --- a/src/main/java/com/destroystokyo/paper/PaperVersionFetcher.java
 +++ b/src/main/java/com/destroystokyo/paper/PaperVersionFetcher.java
