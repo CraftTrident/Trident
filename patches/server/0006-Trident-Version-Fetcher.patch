@@ -6,8 +6,8 @@ Subject: [PATCH] Trident Version Fetcher
 
 diff --git a/src/main/java/com/destroystokyo/paper/PaperVersionFetcher b/src/main/java/com/destroystokyo/paper/PaperVersionFetcher
 index 462a6eed350fd660ddaf25d567bb6e97b77d0b2b..4a5ceda9cfc1c87b82366d91c882af3064ccf1bb 100644
---- a/src/main/java/com/destroystokyo/paper/PaperVersionFetcher.java
-+++ b/src/main/java/com/destroystokyo/paper/PaperVersionFetcher.java
+--- a/src/main/java/com/destroystokyo/paper/PaperVersionFetcher
++++ b/src/main/java/com/destroystokyo/paper/PaperVersionFetcher
 @@ -20,7 +20,7 @@ import java.util.stream.StreamSupport;
  public class PaperVersionFetcher implements VersionFetcher {
      private static final java.util.regex.Pattern VER_PATTERN = java.util.regex.Pattern.compile("^([0-9\\.]*)\\-.*R"); // R is an anchor, will always give '-R' at end
