@@ -70,7 +70,7 @@ paperweight {
 
     useStandardUpstream("purpur") {
         url.set(github("PurpurMC", "Purpur"))
-        ref.set(providers.gradleProperty("purpurCommit"))
+        ref.set(providers.gradleProperty("purpurRef"))
 
         withStandardPatcher {
             baseName("Purpur")
