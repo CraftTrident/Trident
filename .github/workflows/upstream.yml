@@ -4,8 +4,8 @@ on:
   pull_request:
   push:
     branches:
-      - "***/**"
-      
+      - "dev/**"
+
 jobs:
   upstream:
     runs-on: ubuntu-latest
