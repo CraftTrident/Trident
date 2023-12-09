@@ -1,10 +1,11 @@
 name: Upstream
-  on:
-    workflow_dispatch:
-    pull_request:
-    push:
-      branches:
-        - "***/**"
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches:
+      - "***/**"
+      
 jobs:
   upstream:
     runs-on: ubuntu-latest
